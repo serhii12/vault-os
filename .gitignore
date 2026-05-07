@@ -37,3 +37,4 @@ yarn-error.log*
 
 # Claude Code — keep settings.json shared, ignore local overrides
 .claude/settings.local.json
+.firecrawl

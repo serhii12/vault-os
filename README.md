@@ -64,6 +64,7 @@ Reusable agent workflows live in `.claude/skills/`. Highlights:
 - **`today`** — daily review and planning. Pulls calendar, email, tasks, and recent messages, then synthesizes a core theme + top priorities + quick wins + meeting audit, and renders an interactive HTML dashboard at `_agent/outputs/today.html`.
 - **`close-day`** — end-of-day processing. Reads today's daily note, surfaces vault connections (tags, backlinks, orphans), detects confidence shifts and contradictions, and suggests filing locations and context-file updates.
 - **`daily-recap`** — chronological end-of-day timeline from Slack, GitHub, calendar, meeting notes, and Claude Code sessions.
+- **`ingest-meeting`** — file Granola meetings into the LLM Wiki. Reads new notes from `Granola/` (synced by the obsidian-granola-sync plugin), drafts a wiki summary, updates attendee CRM pages, surfaces topic connections and contradictions, drops action items into project notes, and logs the ingest with `granola_id` for dedup.
 - **`add-module`** — scaffolds a new vault module (folder + `AGENTS.md` + Templater template).
 
 ## Conventions
