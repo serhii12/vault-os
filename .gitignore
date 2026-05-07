@@ -9,15 +9,6 @@ Thumbs.db
 .obsidian/cache
 .trash/
 
-# Obsidian plugin runtime — installed by Obsidian per-user, don't redistribute
-# (keeps manifest.json + data.json so plugin list and settings stay versioned)
-.obsidian/plugins/*/main.js
-.obsidian/plugins/*/styles.css
-
-# Obsidian community themes — installed per-user via Obsidian UI
-# (custom CSS lives in .obsidian/snippets/ and stays tracked)
-.obsidian/themes/*/theme.css
-.obsidian/themes/*/manifest.json
 
 # Secrets
 .env
