@@ -1,0 +1,27 @@
+/* Graph view Flexoki colors */
+
+.theme-dark {
+  --graph-color-node: #CECDC3;
+  --graph-color-fill: #343331;
+  --graph-color-line: rgba(206, 205, 195, 0.12);
+  --graph-color-text: #878580;
+  --graph-color-fill-highlight: #4385BE;
+  --graph-color-line-highlight: rgba(67, 133, 190, 0.4);
+  --graph-color-fill-tag: #879A39;
+  --graph-color-fill-attachment: #DA702C;
+  --graph-color-fill-unresolved: #D14D41;
+  --graph-color-fill-focused: #3AA99F;
+}
+
+.theme-light {
+  --graph-color-node: #100F0F;
+  --graph-color-fill: #E6E4D9;
+  --graph-color-line: rgba(16, 15, 15, 0.1);
+  --graph-color-text: #6F6E69;
+  --graph-color-fill-highlight: #205EA6;
+  --graph-color-line-highlight: rgba(32, 94, 166, 0.4);
+  --graph-color-fill-tag: #66800B;
+  --graph-color-fill-attachment: #BC5215;
+  --graph-color-fill-unresolved: #AF3029;
+  --graph-color-fill-focused: #24837B;
+}

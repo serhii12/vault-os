@@ -1,0 +1,47 @@
+/* Flexoki-colored headings with subtle underlines */
+
+.theme-dark {
+  --h1-color: #4385BE;
+  --h2-color: #3AA99F;
+  --h3-color: #879A39;
+  --h4-color: #D0A215;
+  --h5-color: #DA702C;
+  --h6-color: #CE5D97;
+}
+
+.theme-light {
+  --h1-color: #205EA6;
+  --h2-color: #24837B;
+  --h3-color: #66800B;
+  --h4-color: #AD8301;
+  --h5-color: #BC5215;
+  --h6-color: #A02F6F;
+}
+
+.markdown-preview-view h1,
+.HyperMD-header-1 {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin-top: 1.5em;
+}
+
+h1::after, .HyperMD-header-1::after,
+h2::after, .HyperMD-header-2::after,
+h3::after, .HyperMD-header-3::after,
+h4::after, .HyperMD-header-4::after,
+h5::after, .HyperMD-header-5::after,
+h6::after, .HyperMD-header-6::after {
+  content: "";
+  display: block;
+  margin-top: 4px;
+  height: 1.5px;
+  border-radius: 2px;
+  opacity: 0.4;
+}
+
+h1::after, .HyperMD-header-1::after { background: var(--h1-color); width: 100%; }
+h2::after, .HyperMD-header-2::after { background: var(--h2-color); width: 80%; }
+h3::after, .HyperMD-header-3::after { background: var(--h3-color); width: 60%; }
+h4::after, .HyperMD-header-4::after { background: var(--h4-color); width: 40%; }
+h5::after, .HyperMD-header-5::after { background: var(--h5-color); width: 30%; }
+h6::after, .HyperMD-header-6::after { background: var(--h6-color); width: 20%; }

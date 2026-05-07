@@ -1,0 +1,34 @@
+# Plugins
+
+## Required
+
+| Plugin             | Purpose                                                                        |
+| ------------------ | ------------------------------------------------------------------------------ |
+| **Templater**      | Dynamic templates. Set folder: `_admin/templates`. Enable trigger on new file. |
+| **Dataview**       | Query vault like a database. Enable JS queries in settings.                    |
+| **Tasks**          | Track `- [ ]` checkboxes across vault with dates, priorities, recurrence.      |
+| **Calendar**       | Month view sidebar. Click dates to create daily notes.                         |
+| **Periodic Notes** | Daily/weekly/monthly/quarterly/yearly notes from templates.                    |
+
+## Recommended
+
+| Plugin | Purpose |
+|---|---|
+| **QuickAdd** | Capture tasks/notes with a keystroke. |
+| **Homepage** | Set Dashboard Home as startup page. |
+| **Kanban** | Visual boards for project and content pipelines. |
+| **Linter** | Auto-format on save. Consistent frontmatter. |
+| **Omnisearch** | Smarter vault-wide search. |
+| **Obsidian Git** | Auto-backup to GitHub. |
+| **Minimal Theme** | Clean theme by kepano. |
+
+## Settings
+
+- Default new note location: `Inbox`
+- Default attachment location: `_admin/attachments`
+- Use wikilinks: On
+- New link format: Shortest path
+
+## Core Plugins to Enable
+
+Backlinks · Outgoing Links · Tags · Page Preview · Bookmarks · Quick Switcher · Graph View · Word Count · Properties View

@@ -1,0 +1,14 @@
+{
+  "newFileLocation": "folder",
+  "newFileFolderPath": "Inbox",
+  "attachmentFolderPath": "_admin/attachments",
+  "useMarkdownLinks": false,
+  "showFrontmatter": true,
+  "foldHeading": true,
+  "foldIndent": true,
+  "strictLineBreaks": false,
+  "readableLineLength": true,
+  "defaultViewMode": "source",
+  "livePreview": true,
+  "promptDelete": true
+}

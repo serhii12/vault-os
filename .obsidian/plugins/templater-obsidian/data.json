@@ -1,0 +1,86 @@
+{
+  "command_timeout": 5,
+  "templates_folder": "_admin/templates",
+  "templates_pairs": [
+    [
+      "",
+      ""
+    ]
+  ],
+  "trigger_on_file_creation": true,
+  "auto_jump_to_cursor": true,
+  "enable_system_commands": false,
+  "shell_path": "",
+  "user_scripts_folder": "",
+  "enable_folder_templates": true,
+  "folder_templates": [
+    {
+      "folder": "Journal/daily",
+      "template": "_admin/templates/periodic/Daily Note.md"
+    },
+    {
+      "folder": "Journal/weekly",
+      "template": "_admin/templates/periodic/Weekly Note.md"
+    },
+    {
+      "folder": "Journal/monthly",
+      "template": "_admin/templates/periodic/Monthly Note.md"
+    },
+    {
+      "folder": "Journal/quarterly",
+      "template": "_admin/templates/periodic/Quarterly Note.md"
+    },
+    {
+      "folder": "Journal/yearly",
+      "template": "_admin/templates/periodic/Yearly Note.md"
+    },
+    {
+      "folder": "1-Projects",
+      "template": "_admin/templates/para/Project.md"
+    },
+    {
+      "folder": "2-Areas",
+      "template": "_admin/templates/para/Area.md"
+    },
+    {
+      "folder": "3-Resources",
+      "template": "_admin/templates/para/Resource.md"
+    },
+    {
+      "folder": "People",
+      "template": "_admin/templates/para/Person.md"
+    },
+    {
+      "folder": "Books",
+      "template": "_admin/templates/para/Book.md"
+    },
+    {
+      "folder": "Recipes",
+      "template": "_admin/templates/para/Recipe.md"
+    },
+    {
+      "folder": "Goals",
+      "template": "_admin/templates/para/Goal.md"
+    },
+    {
+      "folder": "Content",
+      "template": "_admin/templates/content/Content Idea.md"
+    }
+  ],
+  "enable_file_templates": false,
+  "file_templates": [
+    {
+      "regex": ".*",
+      "template": ""
+    }
+  ],
+  "syntax_highlighting": true,
+  "syntax_highlighting_mobile": false,
+  "enabled_templates_hotkeys": [
+    ""
+  ],
+  "startup_templates": [
+    ""
+  ],
+  "intellisense_render": 1
+}

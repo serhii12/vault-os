@@ -1,0 +1,39 @@
+/* Enhanced callout styling */
+
+.callout {
+  border-radius: 8px;
+  border: none;
+  border-left: 3px solid rgba(var(--callout-color), 0.6);
+  background-color: rgba(var(--callout-color), 0.06);
+  padding: 0;
+  margin: 1em 0;
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+  overflow: hidden;
+}
+
+.callout:hover {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
+}
+
+.callout-title {
+  padding: 8px 12px;
+  background-color: rgba(var(--callout-color), 0.08);
+  font-weight: 600;
+  font-size: 0.9em;
+  letter-spacing: 0.01em;
+}
+
+.callout-content {
+  padding: 4px 12px 12px 12px;
+}
+
+.callout.is-collapsed .callout-title {
+  border-radius: 8px;
+}
+
+/* North-star callout */
+.callout[data-callout="north-star"] {
+  --callout-color: 158, 158, 158;
+  --callout-icon: sparkle;
+}

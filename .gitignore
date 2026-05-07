@@ -1,0 +1,48 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Obsidian — local UI state only; keep plugins/configs versioned
+.obsidian/workspace
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache
+.trash/
+
+# Obsidian plugin runtime — installed by Obsidian per-user, don't redistribute
+# (keeps manifest.json + data.json so plugin list and settings stay versioned)
+.obsidian/plugins/*/main.js
+.obsidian/plugins/*/styles.css
+
+# Obsidian community themes — installed per-user via Obsidian UI
+# (custom CSS lives in .obsidian/snippets/ and stays tracked)
+.obsidian/themes/*/theme.css
+.obsidian/themes/*/manifest.json
+
+# Secrets
+.env
+.env.*
+.dev.vars
+*.pem
+*.key
+secrets/
+credentials/
+.aws/
+.ssh/
+.npmrc
+.pypirc
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*~
+
+# Claude Code — keep settings.json shared, ignore local overrides
+.claude/settings.local.json

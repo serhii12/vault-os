@@ -1,0 +1,23 @@
+/* MonoLisa ligature support + script italics */
+
+/* Ensure ligatures render in editor (some themes break them) */
+.cm-s-obsidian .cm-line,
+.markdown-source-view.mod-cm6 .cm-line {
+  font-variant-ligatures: common-ligatures discretionary-ligatures;
+  -webkit-font-feature-settings: "liga" 1, "dlig" 1, "calt" 1, "zero" 1;
+  font-feature-settings: "liga" 1, "dlig" 1, "calt" 1, "zero" 1;
+}
+
+/* Ligatures in code blocks (reading view) */
+.markdown-preview-view code,
+.markdown-preview-view pre code {
+  font-variant-ligatures: common-ligatures discretionary-ligatures;
+  -webkit-font-feature-settings: "liga" 1, "dlig" 1, "calt" 1, "zero" 1;
+  font-feature-settings: "liga" 1, "dlig" 1, "calt" 1, "zero" 1;
+}
+
+/* Enable MonoLisa script italics (ss02) for emphasis */
+em, .cm-em {
+  -webkit-font-feature-settings: "liga" 1, "dlig" 1, "calt" 1, "ss02" 1;
+  font-feature-settings: "liga" 1, "dlig" 1, "calt" 1, "ss02" 1;
+}

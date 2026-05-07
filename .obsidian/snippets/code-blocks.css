@@ -1,0 +1,42 @@
+/* Enhanced code blocks for Flexoki + MonoLisa */
+
+.markdown-preview-view code,
+.cm-s-obsidian .cm-inline-code {
+  font-family: "MonoLisa", monospace;
+  font-size: 0.88em;
+  padding: 2px 5px;
+  border-radius: 4px;
+  background-color: var(--background-secondary);
+  border: 1px solid var(--background-modifier-border);
+}
+
+.markdown-preview-view pre {
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 8px;
+  padding: 1em 1.2em;
+  background-color: var(--background-secondary);
+  position: relative;
+  overflow-x: auto;
+}
+
+.theme-dark {
+  --code-comment: #6F6E69;
+  --code-function: #4385BE;
+  --code-keyword: #8B7EC8;
+  --code-string: #879A39;
+  --code-operator: #CE5D97;
+  --code-value: #DA702C;
+  --code-tag: #D14D41;
+  --code-property: #3AA99F;
+}
+
+.theme-light {
+  --code-comment: #878580;
+  --code-function: #205EA6;
+  --code-keyword: #5E409D;
+  --code-string: #66800B;
+  --code-operator: #A02F6F;
+  --code-value: #BC5215;
+  --code-tag: #AF3029;
+  --code-property: #24837B;
+}

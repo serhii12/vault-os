@@ -1,0 +1,28 @@
+/* Polished file explorer */
+
+.nav-file-title,
+.nav-folder-title {
+  padding: 2px 8px;
+  font-size: 0.88em;
+}
+
+.nav-file-title.is-active {
+  background-color: rgba(var(--mono-rgb-100), 0.06);
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.nav-folder-collapse-indicator {
+  opacity: 0.4;
+  transition: opacity 150ms ease, transform 150ms ease;
+}
+
+.nav-folder:hover .nav-folder-collapse-indicator {
+  opacity: 0.8;
+}
+
+.nav-folder.mod-root > .nav-folder-children > .nav-folder {
+  margin-top: 4px;
+  padding-top: 4px;
+  border-top: 1px solid var(--background-modifier-border);
+}

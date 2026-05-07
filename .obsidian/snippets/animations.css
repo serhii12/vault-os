@@ -1,0 +1,44 @@
+/* Smooth UI animations */
+
+.workspace-tab-header,
+.workspace-tab-header-inner,
+.workspace-tab-container-before,
+.workspace-tab-container-after {
+  transition: background-color 100ms linear, opacity 150ms ease;
+}
+
+.workspace-leaf-content {
+  transition: opacity 150ms ease-in;
+}
+
+.workspace-ribbon {
+  transition: opacity 200ms ease;
+}
+
+.nav-file-title,
+.nav-folder-title {
+  transition: background-color 100ms ease, color 100ms ease;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  transition: background-color 200ms ease;
+}
+
+.view-header-icon,
+.view-action {
+  transition: opacity 150ms ease, color 150ms ease;
+}
+
+.modal {
+  transition: opacity 100ms ease, transform 100ms ease;
+}
+
+a.internal-link,
+a.external-link {
+  transition: color 150ms ease, opacity 150ms ease;
+}
+
+.status-bar-item {
+  transition: opacity 300ms ease;
+}

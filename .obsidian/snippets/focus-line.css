@@ -1,0 +1,14 @@
+/* Active line highlight */
+
+.cm-active.cm-line {
+  background-color: rgba(var(--mono-rgb-100), 0.04);
+  border-radius: 2px;
+}
+
+.markdown-source-view.mod-cm6 .cm-line:not(.cm-active) {
+  opacity: 0.85;
+}
+
+.markdown-source-view.mod-cm6:hover .cm-line:not(.cm-active) {
+  opacity: 1;
+}

@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{DATE_PRETTY}} — Today</title>
+<style>
+  :root {
+    --bg: #0b0d10;
+    --panel: #14171c;
+    --panel-2: #1a1e25;
+    --line: #232831;
+    --text: #e7ecf2;
+    --muted: #8a93a3;
+    --accent: #6ee7a8;
+    --accent-2: #4ad295;
+    --warn: #f5b369;
+    --danger: #ef6f6f;
+    --now: #6ee7a833;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text);
+    font: 15px/1.5 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, system-ui, sans-serif; }
+  body { padding: 28px 36px 80px; max-width: 1400px; margin: 0 auto; }
+
+  /* Header */
+  header { display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    padding-bottom: 18px; border-bottom: 1px solid var(--line); margin-bottom: 22px; }
+  .head-left h1 { margin: 0 0 2px; font-size: 26px; font-weight: 600; letter-spacing: -0.01em; }
+  .head-left .day-type { color: var(--muted); font-size: 14px; }
+  .head-right { display: flex; align-items: center; gap: 22px; }
+  #clock { font-variant-numeric: tabular-nums; font-size: 22px; font-weight: 500;
+    color: var(--text); letter-spacing: 0.02em; }
+  .ring { position: relative; width: 64px; height: 64px; }
+  .ring svg { transform: rotate(-90deg); width: 100%; height: 100%; }
+  .ring circle { fill: none; stroke-width: 6; }
+  .ring .bg { stroke: var(--line); }
+  .ring .fg { stroke: var(--accent); stroke-linecap: round;
+    transition: stroke-dashoffset 300ms ease; }
+  .ring .label { position: absolute; inset: 0; display: grid; place-items: center;
+    font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; }
+
+  /* Theme banner */
+  .theme { background: linear-gradient(135deg, #14171c 0%, #1a1e25 100%);
+    border: 1px solid var(--line); border-radius: 12px; padding: 18px 22px; margin-bottom: 18px; }
+  .theme .label { color: var(--muted); font-size: 12px; text-transform: uppercase;
+    letter-spacing: 0.08em; margin-bottom: 6px; }
+  .theme h2 { margin: 0 0 6px; font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
+  .theme p { margin: 0; color: var(--muted); font-size: 14px; }
+
+  /* Alert banner */
+  .alert { background: #2a1f15; border: 1px solid #5a3a1a; color: #f5b369;
+    padding: 12px 18px; border-radius: 10px; margin-bottom: 18px; font-size: 14px; }
+  .alert strong { color: #ffd28a; }
+
+  /* Grid */
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 22px; }
+  @media (max-width: 1100px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 720px)  { .grid { grid-template-columns: 1fr; } body { padding: 18px; } }
+
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
+    padding: 16px 18px; }
+  .card h3 { margin: 0 0 12px; font-size: 13px; font-weight: 600; color: var(--muted);
+    text-transform: uppercase; letter-spacing: 0.08em; }
+  .card.span-2 { grid-column: span 2; }
+  @media (max-width: 1100px) { .card.span-2 { grid-column: span 2; } }
+  @media (max-width: 720px)  { .card.span-2 { grid-column: span 1; } }
+
+  ul.tasks { list-style: none; padding: 0; margin: 0; }
+  ul.tasks li.task { display: flex; align-items: flex-start; gap: 10px;
+    padding: 8px 8px 8px 4px; border-radius: 8px; cursor: pointer;
+    transition: background 120ms ease; }
+  ul.tasks li.task:hover { background: var(--panel-2); }
+  ul.tasks li.task.now { background: var(--now); border-left: 2px solid var(--accent); }
+  ul.tasks li.task .check { flex: 0 0 18px; width: 18px; height: 18px; margin-top: 2px;
+    border: 1.5px solid var(--muted); border-radius: 5px; position: relative;
+    transition: all 150ms ease; }
+  ul.tasks li.task.done .check { background: var(--accent-2); border-color: var(--accent-2); }
+  ul.tasks li.task.done .check::after { content: ""; position: absolute; left: 4px; top: 1px;
+    width: 5px; height: 9px; border: solid #0b0d10; border-width: 0 2px 2px 0;
+    transform: rotate(45deg); }
+  ul.tasks li.task .body { flex: 1; min-width: 0; }
+  ul.tasks li.task label { display: block; cursor: pointer; }
+  ul.tasks li.task .time { color: var(--muted); font-variant-numeric: tabular-nums;
+    font-size: 13px; margin-right: 8px; }
+  ul.tasks li.task .loc { display: block; color: var(--muted); font-size: 12px; margin-top: 2px; }
+  ul.tasks li.task .due { color: var(--muted); font-size: 12px; margin-left: 6px; }
+  ul.tasks li.task.overdue .due { color: var(--danger); font-weight: 500; }
+  ul.tasks li.task.overdue label { color: #ffb3b3; }
+  ul.tasks li.task.done label,
+  ul.tasks li.task.done .time,
+  ul.tasks li.task.done .loc,
+  ul.tasks li.task.done .due { text-decoration: line-through; opacity: 0.5; }
+  ul.tasks li.task .ctx { margin: 4px 0 0; color: var(--muted); font-size: 13px; }
+  ul.tasks li.empty { color: var(--muted); font-style: italic; padding: 6px 4px; }
+
+  /* Stats */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 22px; }
+  @media (max-width: 720px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+  .stat { background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+    padding: 14px 16px; }
+  .stat .v { font-size: 22px; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .stat .k { font-size: 12px; color: var(--muted); text-transform: uppercase;
+    letter-spacing: 0.06em; margin-top: 2px; }
+
+  /* Coming up */
+  .upcoming { background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
+    padding: 16px 18px; }
+  .upcoming h3 { margin: 0 0 12px; font-size: 13px; font-weight: 600; color: var(--muted);
+    text-transform: uppercase; letter-spacing: 0.08em; }
+  .upcoming ul { list-style: none; padding: 0; margin: 0; }
+  .upcoming li { padding: 6px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
+  .upcoming li:last-child { border-bottom: none; }
+  .upcoming .day { display: inline-block; width: 38px; color: var(--accent); font-weight: 500; }
+</style>
+</head>
+<body data-date="{{DATE_ISO}}" data-total="{{TOTAL_ITEMS}}">
+
+<header>
+  <div class="head-left">
+    <h1>{{DATE_PRETTY}}</h1>
+    <div class="day-type">{{DAY_TYPE}}</div>
+  </div>
+  <div class="head-right">
+    <div id="clock">--:--:--</div>
+    <div class="ring" aria-label="completion">
+      <svg viewBox="0 0 64 64">
+        <circle class="bg" cx="32" cy="32" r="28"></circle>
+        <circle class="fg" cx="32" cy="32" r="28" stroke-dasharray="175.93" stroke-dashoffset="175.93"></circle>
+      </svg>
+      <div class="label" id="ringLabel">0%</div>
+    </div>
+  </div>
+</header>
+
+<section class="theme">
+  <div class="label">Core theme</div>
+  <h2>{{CORE_THEME}}</h2>
+  <p>{{THEME_CONTEXT}}</p>
+</section>
+
+{{ALERT_BANNER}}
+
+<section class="grid">
+  <div class="card span-2">
+    <h3>Top Priorities</h3>
+    <ul class="tasks" data-section="priorities">{{TOP_PRIORITIES_LIST}}</ul>
+  </div>
+
+  <div class="card">
+    <h3>Today's Schedule</h3>
+    <ul class="tasks" data-section="schedule">{{SCHEDULE_LIST}}</ul>
+  </div>
+
+  <div class="card">
+    <h3>Quick Wins</h3>
+    <ul class="tasks" data-section="quickwins">{{QUICK_WINS_LIST}}</ul>
+  </div>
+
+  <div class="card">
+    <h3>Overdue</h3>
+    <ul class="tasks" data-section="overdue">{{OVERDUE_LIST}}</ul>
+  </div>
+
+  <div class="card">
+    <h3>Due This Week</h3>
+    <ul class="tasks" data-section="thisweek">{{DUE_THIS_WEEK_LIST}}</ul>
+  </div>
+
+  <div class="card">
+    <h3>Floating</h3>
+    <ul class="tasks" data-section="floating">{{FLOATING_LIST}}</ul>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="stat"><div class="v" id="stSchedule">0</div><div class="k">Schedule done</div></div>
+  <div class="stat"><div class="v" id="stQuick">0</div><div class="k">Quick wins</div></div>
+  <div class="stat"><div class="v" id="stOverdue">0</div><div class="k">Overdue cleared</div></div>
+  <div class="stat"><div class="v" id="stTotal">0</div><div class="k">Total done</div></div>
+</section>
+
+<section class="upcoming">
+  <h3>What's Coming</h3>
+  <ul>{{UPCOMING_LIST}}</ul>
+</section>
+
+<script>
+(function(){
+  const date = document.body.dataset.date;
+  const storeKey = "today:" + date;
+  const total = parseInt(document.body.dataset.total || "0", 10) || 0;
+
+  // Build a wrapping <div class="body"> + checkbox around each task's existing content
+  document.querySelectorAll("li.task").forEach(li => {
+    if (li.dataset.wrapped) return;
+    const check = document.createElement("span");
+    check.className = "check";
+    const body = document.createElement("div");
+    body.className = "body";
+    while (li.firstChild) body.appendChild(li.firstChild);
+    li.appendChild(check);
+    li.appendChild(body);
+    li.dataset.wrapped = "1";
+  });
+
+  // Restore state
+  let state = {};
+  try { state = JSON.parse(localStorage.getItem(storeKey) || "{}"); } catch(e) {}
+  document.querySelectorAll("li.task[data-id]").forEach(li => {
+    if (state[li.dataset.id]) li.classList.add("done");
+  });
+
+  function save() {
+    const out = {};
+    document.querySelectorAll("li.task[data-id].done").forEach(li => out[li.dataset.id] = 1);
+    localStorage.setItem(storeKey, JSON.stringify(out));
+  }
+
+  function refreshStats() {
+    const n = sel => document.querySelectorAll(`ul.tasks[data-section="${sel}"] li.task.done`).length;
+    document.getElementById("stSchedule").textContent = n("schedule");
+    document.getElementById("stQuick").textContent = n("quickwins");
+    document.getElementById("stOverdue").textContent = n("overdue");
+    const totalDone = document.querySelectorAll("li.task.done").length;
+    document.getElementById("stTotal").textContent = totalDone;
+
+    const ringFg = document.querySelector(".ring .fg");
+    const ringLabel = document.getElementById("ringLabel");
+    const denom = total || document.querySelectorAll("li.task[data-id]").length || 1;
+    const pct = Math.min(100, Math.round((totalDone / denom) * 100));
+    const circ = 2 * Math.PI * 28; // 175.93
+    ringFg.setAttribute("stroke-dashoffset", String(circ * (1 - pct/100)));
+    ringLabel.textContent = pct + "%";
+  }
+
+  document.querySelectorAll("li.task[data-id]").forEach(li => {
+    li.addEventListener("click", e => {
+      if (e.target.tagName === "A") return;
+      li.classList.toggle("done");
+      save();
+      refreshStats();
+    });
+  });
+
+  // Live clock + current-time-block highlight
+  function pad(n){ return String(n).padStart(2, "0"); }
+  function tick() {
+    const d = new Date();
+    document.getElementById("clock").textContent =
+      pad(d.getHours()) + ":" + pad(d.getMinutes()) + ":" + pad(d.getSeconds());
+    const nowMin = d.getHours() * 60 + d.getMinutes();
+    document.querySelectorAll("ul.tasks[data-section='schedule'] li.task").forEach(li => {
+      const s = li.dataset.start, e = li.dataset.end;
+      if (!s || !e) return;
+      const sM = parseInt(s.split(":")[0],10)*60 + parseInt(s.split(":")[1],10);
+      const eM = parseInt(e.split(":")[0],10)*60 + parseInt(e.split(":")[1],10);
+      li.classList.toggle("now", nowMin >= sM && nowMin < eM);
+    });
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  refreshStats();
+})();
+</script>
+
+</body>
+</html>

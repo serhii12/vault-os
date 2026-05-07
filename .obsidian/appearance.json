@@ -1,0 +1,18 @@
+{
+  "accentColor": "#879A39",
+  "cssTheme": "Minimal",
+  "baseFontSize": 13,
+  "textFontFamily": "iA Writer Quattro S",
+  "monospaceFontFamily": "MonoLisa",
+  "interfaceFontFamily": "",
+  "enabledCssSnippets": [
+    "callouts-enhanced",
+    "headings",
+    "code-blocks",
+    "animations",
+    "graph-colors",
+    "file-explorer",
+    "focus-line",
+    "monolisa-ligatures"
+  ]
+}
